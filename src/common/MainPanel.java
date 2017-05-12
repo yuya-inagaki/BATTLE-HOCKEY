@@ -37,13 +37,31 @@ public class MainPanel extends JPanel implements Runnable, KeyListener{
 	t.start();//Thread Start
     }
 
+    // aとbの差がmargin以下ならtrue。衝突判定用
+    private boolean nearlyEqual(int a, int b, int margin){
+	return Math.abs(a - b) < margin;
+    }
+
     void detectGameOver(){
 	if(ball.x < 0 || ball.x > 800){
-	    
+	    System.exit(0); // Todo: ゲームオーバー演出 p1 win とか
 	}
     };
     void detectCollision(){
+	// 上下の壁とボールの衝突
+	if(ball.y > 450 || ball.y < 0){
+	    ball.vy = - ball.vy;
+	}
+
+	//p1とボールの衝突
+	if(nearlyEqual(ball.x, p1.x, 20) && nearlyEqual(ball.y, p1.y, 110)){
+	    ball.vx = - ball.vx;
+	}
 	
+	//p2とボールの衝突
+	if(nearlyEqual(ball.x, p2.x, 20) && nearlyEqual(ball.y, p2.y, 110)){
+	    ball.vx = - ball.vx;
+	}
     };
     
     //Runnableによるrun() method
