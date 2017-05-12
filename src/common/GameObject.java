@@ -5,7 +5,7 @@ import java.awt.Color;
 
 // 座標を持つゲーム上のオブジェクトで、位置情報をserverからclientへ送れる
 // 四角以外の形のやつを作りたくなったら継承してpaintObjectをオーバーライドだ
-class GameObject {
+public class GameObject {
     int x;
     int y;
     int vx;
