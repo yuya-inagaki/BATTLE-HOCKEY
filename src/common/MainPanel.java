@@ -46,7 +46,8 @@ public class MainPanel extends JPanel implements Runnable, KeyListener{
 	if(ball.x < 0 || ball.x > 800){
 	    System.exit(0); // Todo: ゲームオーバー演出 p1 win とか
 	}
-    };
+    }
+    
     void detectCollision(){
 	// 上下の壁とボールの衝突
 	if(ball.y > 450 || ball.y < 0){
@@ -95,38 +96,11 @@ public class MainPanel extends JPanel implements Runnable, KeyListener{
     **********************/
     //Keyが押された場合
     @Override
-    public void keyPressed(KeyEvent e){
-	switch(e.getKeyCode()){
-	case KeyEvent.VK_UP:
-	    System.out.println("up");
-	    if(x < 300){
-		p1.setVY(-7);
-	    }
-	    break;
-	case KeyEvent.VK_DOWN:
-	    System.out.println("down");
-	    if(x > 0){
-		p1.setVY(7);
-	    }
-	    break;
-	}
-	
-    }
+    public void keyPressed(KeyEvent e){}
     
     //Keyが離された場合
     @Override
-    public void keyReleased(KeyEvent e){
-	switch(e.getKeyCode()){
-	case KeyEvent.VK_UP:
-	    System.out.println("up release");
-	    p1.setVY(0);
-	    break;
-	case KeyEvent.VK_DOWN:
-	    System.out.println("down release");
-	    p1.setVY(0);
-	    break;
-	}
-    }
+    public void keyReleased(KeyEvent e){}
 
     @Override
     public void keyTyped(KeyEvent e){}
