@@ -12,7 +12,6 @@ import common.MainPanel;
 
 public class ClientGameView extends GameView{
     ClientGameView(String title) {
-    	super(title);
         //constructor. フレームの設定関係を行う
         setTitle(title);
         setSize(800,500);

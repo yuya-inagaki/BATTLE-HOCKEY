@@ -13,18 +13,7 @@ import java.awt.event.KeyEvent;
 import java.util.*;
 import common.GameObject;
 
-public class GameView extends JFrame{
-    public static void main(String args[]){
-        GameView frame = new GameView("なんかゲーム");//引数はWindow Title
-        frame.setVisible(true);
-    }
-
-    int getScreensizex(){
-	return 0;
-    }
-    
-    
+public abstract class GameView extends JFrame{
     //constructor. フレームの設定関係を行う
-    protected GameView(String title){
-    }
+    
 }

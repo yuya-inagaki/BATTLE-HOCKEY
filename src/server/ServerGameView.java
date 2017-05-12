@@ -8,7 +8,6 @@ import common.MainPanel;
 public class ServerGameView extends GameView {
 
     protected ServerGameView(String title) {
-	super(title);
         setTitle(title);
         setSize(800,500);
         setLocationRelativeTo(null);//初期画面表示位置を中央に

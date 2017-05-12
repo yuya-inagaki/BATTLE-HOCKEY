@@ -9,7 +9,7 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 //ゲーム本体の処理と描画はこのクラス。多分わけたほうがいい。
-public class MainPanel extends JPanel implements Runnable, KeyListener{
+public abstract class MainPanel extends JPanel implements Runnable, KeyListener{
     protected int x = 100, y = 100;
     final String p1name = "p1";
     final String p2name = "p2";
@@ -95,13 +95,13 @@ public class MainPanel extends JPanel implements Runnable, KeyListener{
      KeyEvent
     **********************/
     //Keyが押された場合
-    @Override
-    public void keyPressed(KeyEvent e){}
+    //@Override
+    //public void keyPressed(KeyEvent e);
     
     //Keyが離された場合
-    @Override
-    public void keyReleased(KeyEvent e){}
+    //@Override
+    //public void keyReleased(KeyEvent e){}
 
-    @Override
-    public void keyTyped(KeyEvent e){}
+    //@Override
+    //public void keyTyped(KeyEvent e){}
 }
