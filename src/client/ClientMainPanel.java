@@ -1,26 +1,31 @@
 package client;
 
-import common.GameView;
+import common.GameInfo;
 import common.MainPanel;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Graphics;
-import java.awt.BorderLayout;
-import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.awt.event.KeyEvent;
-import java.util.*;
-import common.GameObject;
 
 class ClientMainPanel extends MainPanel {
-
+    
     ClientMainPanel() {
 	super();
-	// TODO Auto-generated constructor stub
+	try{
+	    super.comm = new ClientCommunicator("localhost");
+	    super.comm.init();
+	}catch(IOException e){
+	    System.out.println("exception on initializing super.comm");
+	    System.exit(1);
+	}
     }
 
+    // clientなので、p2yを送る
+    @Override
+    protected void runCommunication()throws IOException {
+    	int p2ydash =super.p2.getY();
+    	GameInfo info = super.comm.run(p2ydash);
+    	super.p1.setY(info.p1y);
+    }
     /**********************
         KeyEvent
     **********************/
@@ -38,7 +43,7 @@ class ClientMainPanel extends MainPanel {
 	    System.out.println("down");
 	    if(x > 0){
 	    	p2.setVY(7);
-        }
+	    }
 	    break;
         }
 	

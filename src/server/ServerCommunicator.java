@@ -2,35 +2,47 @@ package server;
 import java.io.*;
 import java.net.*;
 import common.Communicator;
+import common.GameInfo;
 
 public class ServerCommunicator implements Communicator{
-    int PORT = 8080;
-    ServerCommunicator(){}
+
+    ServerSocket s=null;
+    Socket sock = null;
+    final int PORT = 8080;
+    ServerCommunicator(){
+    }
+    
+    @Override
+    public void init()throws IOException{
+    	s = new ServerSocket(PORT);
+    	System.out.println("Started(server): " + s);
+	sock = s.accept();
+	System.out.println("accepted(server)");
+    }	
+    protected void finalize()throws IOException {
+    	s.close();
+    	sock.close();
+    }
 
     // p1のy座標を送ってp2のy座標を受け取る
-    public int run(int p1y)throws IOException{
+    @Override
+    public GameInfo run(int p1y)throws IOException{
+	System.out.println("servercommrun");
 	String p2y;
-	ServerSocket s=null;
-	Socket sock = null; 
+	System. out.println("accepted: " + sock);
+	BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+	PrintWriter out = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);
 	try{
-	    s = new ServerSocket(PORT);
-	    System.out.println("Started(server): " + s);
-	    try{
-		sock = s.accept();
-		System.out.println("accepted: " + sock);
-		BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
-		PrintWriter out = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);
-		out.println(p1y);
-		p2y = in.readLine();
+		Thread.sleep(60);
+	}catch(InterruptedException e){
 		
-	    }finally{
-		System.out.println("closing(server)");
-		sock.close();
-	    }
-	}finally{
-	    s.close();
 	}
-	return Integer.parseInt(p2y);
+	out.println(p1y);
+	p2y = in.readLine();
+	GameInfo res = new GameInfo();
+	res.p1y = p1y;
+	res.p2y = Integer.parseInt(p2y);
+	return res;
     }
 }
 

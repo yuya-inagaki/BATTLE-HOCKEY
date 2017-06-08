@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JPanel;
@@ -17,6 +18,7 @@ public abstract class MainPanel extends JPanel implements Runnable, KeyListener{
     protected GameObject p1;
     protected GameObject p2;
     protected GameObject ball;
+    protected Communicator comm; 
     HashMap<String, GameObject> objects = new HashMap<String, GameObject>();
 
     // ゲームの初期化処理。gameobjectの生成とか
@@ -33,10 +35,13 @@ public abstract class MainPanel extends JPanel implements Runnable, KeyListener{
 	//setLayout(null);
 	initializeGame();
 	setBackground(Color.gray);//背景色
+    }
+    public void init(){
 	t = new Thread(this);//Thread instance
 	t.start();//Thread Start
-    }
 
+    }
+    
     // aとbの差がmargin以下ならtrue。衝突判定用
     private boolean nearlyEqual(int a, int b, int margin){
 	return Math.abs(a - b) < margin;
@@ -56,23 +61,38 @@ public abstract class MainPanel extends JPanel implements Runnable, KeyListener{
 
 	//p1とボールの衝突
 	if(nearlyEqual(ball.x, p1.x, 20) && nearlyEqual(ball.y, p1.y, 110)){
-	    ball.vx = - ball.vx;
+	    ball.vx = Math.abs(ball.vx);
 	}
 	
 	//p2とボールの衝突
 	if(nearlyEqual(ball.x, p2.x, 20) && nearlyEqual(ball.y, p2.y, 110)){
-	    ball.vx = - ball.vx;
+	    ball.vx = - Math.abs(ball.vx);
 	}
     };
+
+    protected abstract void runCommunication()throws IOException;
     
     //Runnableによるrun() method
     @Override
     public void run(){
+	System.out.println("mainpanelrun");
 	//無限ループでThreadが終了しないようにする
 	while(true){
-	    
 	    try{
-		t.sleep(60);
+	    	long connectionstart = System.currentTimeMillis();
+		try{
+		    runCommunication();
+		}catch(IOException e){
+		    System.out.println("comm failed");
+		}
+	    	long connectionend = System.currentTimeMillis();
+	    	long timetosleep = 60- (connectionend - connectionstart);
+	    	if(timetosleep > 0){
+		    Thread.sleep(timetosleep);
+	    	}else{
+		    System.out.println("処理落ち中: " + (timetosleep - 60) + "msec");
+		}
+
 	    }catch(InterruptedException e){}
 	    detectGameOver();
 	    detectCollision();
