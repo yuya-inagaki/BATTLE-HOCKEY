@@ -23,7 +23,7 @@ public class ServerGameView extends GameView {
 	
         //Mainパネルの作成、フレームへのセット
         MainPanel MP = new ServerMainPanel();
-	MP.init();
+        MP.init();
         CP.add(MP);
         //CP.remove(MP);//フレームを外す
         addKeyListener(MP);//KeyListenerをフレームにセット

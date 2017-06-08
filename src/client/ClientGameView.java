@@ -28,6 +28,7 @@ public class ClientGameView extends GameView{
     	
 	//Mainパネルの作成、フレームへのセット
 	MainPanel MP = new ClientMainPanel();
+	MP.init();
 	CP.add(MP);
 	//CP.remove(MP);//フレームを外す
 	addKeyListener(MP);//KeyListenerをフレームにセット
