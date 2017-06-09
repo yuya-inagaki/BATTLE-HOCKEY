@@ -27,7 +27,6 @@ public class ServerCommunicator implements Communicator{
     // p1のy座標を送ってp2のy座標を受け取る
     @Override
     public GameInfo run(int p1y)throws IOException{
-	System.out.println("servercommrun");
 	String p2y;
 	System. out.println("accepted: " + sock);
 	BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));

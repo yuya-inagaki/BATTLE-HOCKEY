@@ -28,7 +28,6 @@ public class ClientCommunicator implements Communicator{
     }
     
     public GameInfo run(int p2y)throws IOException{
-	System.out.println("clientcommrun");
 	String p1y;
 	BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 	PrintWriter out = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);

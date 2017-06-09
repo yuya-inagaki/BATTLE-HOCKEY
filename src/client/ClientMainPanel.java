@@ -36,15 +36,11 @@ class ClientMainPanel extends MainPanel {
         switch(e.getKeyCode()){
 	case KeyEvent.VK_UP:
 	    System.out.println("up");
-	    if(x < 300){
-	    	p2.setVY(-7);
-	    }
+	    p2.setVY(-7);
 	    break;
 	case KeyEvent.VK_DOWN:
 	    System.out.println("down");
-	    if(x > 0){
-	    	p2.setVY(7);
-	    }
+	    p2.setVY(7);
 	    break;
         }
 	

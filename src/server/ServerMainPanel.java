@@ -37,15 +37,11 @@ public class ServerMainPanel extends MainPanel{
 	switch(e.getKeyCode()){
 	case upkey:
 	    System.out.println("up");
-	    if(x < 300){
-		p1.setVY(-7);
-	    }
+	    p1.setVY(-7);
 	    break;
 	case downkey:
 	    System.out.println("down");
-	    if(x > 0){
-		p1.setVY(7);
-	    }
+	    p1.setVY(7);
 	    break;
 	}
 	

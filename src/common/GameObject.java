@@ -31,10 +31,19 @@ public class GameObject {
 	this.ysize = ysize;
 	this.color = color;
     }
+
     //毎フレーム行われる状態のアップデート
     public void update(){
+	if(y + vy > 500){
+	    y = 500;
+	}else if(y + vy<0){
+	    y = 0;
+	}else{
+	    y += vy;
+	}
+
 	x += vx;
-	y += vy;
+
     }
     public void paintObject(Graphics g){
 	g.setColor(color);
