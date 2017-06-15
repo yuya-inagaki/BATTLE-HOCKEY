@@ -28,7 +28,6 @@ public class ServerCommunicator implements Communicator{
     @Override
     public GameInfo run(int p1y)throws IOException{
 	String p2y;
-	System. out.println("accepted: " + sock);
 	BufferedReader in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
 	PrintWriter out = new PrintWriter(new OutputStreamWriter(sock.getOutputStream()), true);
 	try{

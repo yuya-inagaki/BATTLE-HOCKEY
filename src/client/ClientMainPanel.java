@@ -22,7 +22,6 @@ class ClientMainPanel extends MainPanel {
     // clientなので、p2yを送る
     @Override
     protected void runCommunication()throws IOException {
-    	System.out.print("clientrunccomm");
     	int p2ydash =super.p2.getY();
     	GameInfo info = super.comm.run(p2ydash);
     	super.p1.setY(info.p1y);
